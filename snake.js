@@ -80,10 +80,13 @@ function move(){
 
 function appleEated(){
     if(snake[0].left==apple.left && snake[0].top==apple.top){
-        snake.push(new snakeSquare(snake[snake.length-1].left-direction[0]*20,snake[snake.length-1].top-direction[1]*20));
+        prevLast=snake[snake.length-1];
+        for(let i=1;i<4;i++){
+            snake.push(new snakeSquare(prevLast.left-direction[0]*i*20,prevLast.top-direction[1]*i*20));
+            let span=document.createElement("span");
+            document.getElementById("snake").appendChild(span);
+        }
         newApple();
-        let span=document.createElement("span");
-        document.getElementById("snake").appendChild(span);
         score++;
         console.log("left:"+apple.left+" top: "+ apple.top)
     }
@@ -92,7 +95,11 @@ function appleEated(){
 function newApple(){
     let appleLeft=Math.floor((Math.random()*780+1)/20)*20;
     let appleTop=Math.floor((Math.random()*580+1)/20)*20;
-
+    for(let i=0;i<snake.length;i++){
+        if(snake[i].left==appleLeft && snake[i].top==appleTop)
+            newApple();
+    }
+    
     apple=new snakeSquare(appleLeft,appleTop);
     let accessApple=document.getElementById("apple");
     accessApple.style.left=apple.left +"px";

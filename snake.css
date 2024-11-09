@@ -12,11 +12,12 @@
 }
 .container .snake span{
   background-color: rgb(94, 249, 83);
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   position: absolute;
   left: 50%;
   top: 50%;
+  margin: 1px;
 }
 .container .apple{
   background-color: rgb(255, 47, 47);
