@@ -96,10 +96,13 @@ function newApple(){
     let appleLeft=Math.floor((Math.random()*780+1)/20)*20;
     let appleTop=Math.floor((Math.random()*580+1)/20)*20;
     for(let i=0;i<snake.length;i++){
-        if(snake[i].left==appleLeft && snake[i].top==appleTop)
-            newApple();
+        if(snake[i].left==appleLeft && snake[i].top==appleTop){
+            appleLeft=Math.floor((Math.random()*780+1)/20)*20;
+            appleTop=Math.floor((Math.random()*580+1)/20)*20;
+            i=0;
+        }
     }
-    
+
     apple=new snakeSquare(appleLeft,appleTop);
     let accessApple=document.getElementById("apple");
     accessApple.style.left=apple.left +"px";
@@ -118,7 +121,7 @@ function detectDir(){
     document.addEventListener("keydown", function(event) {
         
         switch (event.key) {
-            case "ArrowUp":
+            case "ArrowUp"||'w':
                 if(direction[1]==1)break;
                 event.preventDefault();
                 direction[0]=0;
